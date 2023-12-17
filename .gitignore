@@ -209,4 +209,4 @@ Cargo.lock
 .vscode/
 *.code-workspace
 
-hardhat.config.ts
+hardhat.*
