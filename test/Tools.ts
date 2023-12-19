@@ -47,24 +47,5 @@ import {
             expect(await toolsSuite.toLower('Mary had a little lamb')).to.equal('mary had a little lamb');
             expect(await toolsSuite.toLower('mARY had A lITTlE lamb')).to.equal('mary had a little lamb');
         });
-        it('zeroAddressTest should return true', async function(){
-            const toolsSuite : any = await loadFixture(deployToolsFixture);
-
-            expect(await toolsSuite.zeroAddressTest()).to.equal(true);
-        })
     });
-
-    // describe("Slice Max", function () {
-    //     it("Should return expected value when end < len", async function () {
-    //         const toolsSuite : any = await loadFixture(deployToolsFixture);
-
-    //         expect(await toolsSuite.sliceMax(0, 2, 5)).to.equal(2);
-    //     });
-
-    //     it("Should return len -1 value when estart + end > len", async function () {
-    //         const toolsSuite : any = await loadFixture(deployToolsFixture);
-
-    //         expect(await toolsSuite.sliceMax(4, 2, 5)).to.equal(4);
-    //     });
-    // });
   });

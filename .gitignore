@@ -208,5 +208,3 @@ Cargo.lock
 # VSCode settings
 .vscode/
 *.code-workspace
-
-hardhat.*

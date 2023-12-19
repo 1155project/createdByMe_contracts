@@ -1870,8 +1870,8 @@
       ]
     },
     "/home/xactant/projects/1155project/createdByMe/createdByMe_contracts/contracts/ToolsSuite.sol": {
-      "lastModificationDate": 1702594637158,
-      "contentHash": "ad1fcb8cbfd0a3a9c3b3079e73366c8f",
+      "lastModificationDate": 1702997194351,
+      "contentHash": "30b38660d58b16db447aa1668ecf2235",
       "sourceName": "contracts/ToolsSuite.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -1905,42 +1905,6 @@
       ],
       "artifacts": [
         "ToolsSuite"
-      ]
-    },
-    "/home/xactant/projects/1155project/createdByMe/createdByMe_contracts/contracts/Lock.sol": {
-      "lastModificationDate": 1702594637154,
-      "contentHash": "ae66265769cc28ebdaa34881df95bc5e",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.20",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "Lock"
       ]
     },
     "/home/xactant/projects/1155project/createdByMe/createdByMe_contracts/contracts/lib/Pausable.sol": {
