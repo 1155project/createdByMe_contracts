@@ -23,4 +23,28 @@ run `npx hardhat compile`
 run `npx hardhat test`
 
 ## Local Deployment
-Hardhat comes with a local node that you can test your contracts on. See the Hardhat documentation for information about starting a local node.
+Hardhat comes with a local node that you can test your contracts on. See the [Hardhat documentation](https://hardhat.org/hardhat-runner/docs/guides/deploying) for more information about sdeployment.
+
+### Start local node
+`npx hardhat node`
+
+### Deploy to local node
+`npx hardhat run --network localhost scripts/deploy.ts`
+
+## Deploy to a network
+Make sure that *<network>* is defined in your local `hardhat.config.ts` file.
+`npx hardhat run --network <your-network> scripts/deploy.js`
+
+## Latest Deployments
+### Test
+**mumbai:** `not deployed`
+
+### Prod
+**polygon:** `not deployed`
+
+## Other deployments
+### Test
+**mumbai:** `not deployed`
+
+### Prod
+**polygon:** `not deployed`

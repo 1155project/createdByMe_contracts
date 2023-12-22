@@ -1,23 +1,17 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  console.log('****************  OOP ACK! ************************');
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  console.log('Deploy CreatorNameService ...')
+  const CreatorNameService = await ethers.getContractFactory("CreatorNameService", );
+  const creatorNameService = await CreatorNameService.deploy();
+  await creatorNameService.waitForDeployment();
+  console.log(`CreatorNameService contract successfully deployed to ${await creatorNameService.getAddress()}`);
 
-  const lockedAmount = ethers.parseEther("0.001");
-
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
-
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  console.log('Deploy AssetCreatorFactor ...');
+  const AssetCreatorFactory= await ethers.getContractFactory("AssetCreatorFactory", );
+  const assetCreatorFactory = await AssetCreatorFactory.deploy(creatorNameService.getAddress());
+  await assetCreatorFactory.waitForDeployment();
+  console.log(`AssetCreatorFactory contract successfully deployed to ${await assetCreatorFactory.getAddress()}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

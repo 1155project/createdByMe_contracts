@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();  // Load environment variables from .env file 
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import env from "hardhat";
 require("hardhat-contract-sizer");
 
 const testRpcNodeUrl = process.env.TEST_RPC_NODE_URL ?? '';

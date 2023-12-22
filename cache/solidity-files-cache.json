@@ -1870,8 +1870,8 @@
       ]
     },
     "/home/xactant/projects/1155project/createdByMe/createdByMe_contracts/contracts/ToolsSuite.sol": {
-      "lastModificationDate": 1702997194351,
-      "contentHash": "30b38660d58b16db447aa1668ecf2235",
+      "lastModificationDate": 1703000890841,
+      "contentHash": "8fd0c8d2315239cc801294af46a9e454",
       "sourceName": "contracts/ToolsSuite.sol",
       "solcConfig": {
         "version": "0.8.20",
