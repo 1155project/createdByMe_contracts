@@ -3,6 +3,8 @@ import {
 } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { keccak256 } from "@ethersproject/keccak256";
+import { toUtf8Bytes } from "@ethersproject/strings";
 
 const creatorName1 = 'ABCDEF';
 const creatorName2 = 'deadbeef';
@@ -16,11 +18,15 @@ describe("AssetProvenance", function () {
     // and reset Hardhat Network to that snapshot in every test.
     async function deployAssetFactoryFixture_Deploy() {
         // Contracts are deployed using the first signer/account by default
+        const AUTH_ROLE = keccak256(toUtf8Bytes("AUTH_ROLE"));
         const [owner, otherAccount] = await ethers.getSigners();
         const CreatorNameService = await ethers.getContractFactory("CreatorNameService", );
         const creatorNameService = await CreatorNameService.deploy();
         const AssetCreatorFactory= await ethers.getContractFactory("AssetCreatorFactory", );
         const assetCreatorFactory = await AssetCreatorFactory.deploy(creatorNameService.getAddress());
+
+        // Make factory contract an auth of creator name service.
+        await creatorNameService.grantRole(AUTH_ROLE, assetCreatorFactory.getAddress());
 
         await expect(await creatorNameService.setCreatorName(owner.address, creatorName1));
         await expect(await creatorNameService.setCreatorName(altAddress, creatorName2));
@@ -58,6 +64,20 @@ describe("AssetProvenance", function () {
             expect(resp.count).to.equal(3);
             expect(resp.creatorAddresses[0]).to.equal(addr);
 
+        });
+
+        it("Should pair creators id with creator's asset contract address.", async function () {
+            const { assetCreatorFactory, creatorNameService, owner, otherAccount } = await loadFixture(deployAssetFactoryFixture_Deploy);
+            const story = 'The creators story goes here.';
+            const url = 'https://createdbyme.io/ipfs/abcdeadbeef123';
+            let addr = '0xCafac3dD18aC6c6e92c921884f9E4176737C052c';
+            
+            await assetCreatorFactory.deployCreatorContract(owner.address, story, url);
+
+            const resp = await creatorNameService.getCreatorAssetProvenanceAddress(owner.address);
+            expect(resp).to.equal(addr);
+
+            
         });
     });
 });

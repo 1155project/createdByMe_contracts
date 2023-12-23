@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 
 import { AssetProvenance } from "./AssetProvenance.sol";
 import { Constants } from "./lib/Constants.sol";
+import { ICreatorNameService } from './ICreatorNameService.sol';
 
 // Factory Contract
 contract AssetCreatorFactory {
@@ -20,6 +21,9 @@ contract AssetCreatorFactory {
         address assetProvenanceAddress = address(new AssetProvenance(_id, creatorNameSerivce, _story, _uri));
         deployedCreators.push(assetProvenanceAddress);
 
+        ICreatorNameService service = ICreatorNameService(creatorNameSerivce);
+        service.setCreatorAssetProvenenaceAddress(_id, assetProvenanceAddress);
+        
         emit AssetProvenanceGenerated(_id, assetProvenanceAddress, _story, msg.sender);
     }
 

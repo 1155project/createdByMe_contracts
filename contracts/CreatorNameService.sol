@@ -16,6 +16,7 @@ contract CreatorNameService is ICreatorNameService, AccessControl {
     //event CreatorNameSet(address creatorId, string displayName);
     mapping (string => address) _creatorByName;
     mapping (address => string) _displayNames;
+    mapping (address => address) _creatorAssetRecords;
 
     constructor () {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -53,6 +54,17 @@ contract CreatorNameService is ICreatorNameService, AccessControl {
         _displayNames[_creatorId] = _displayName;
 
         emit CreatorNameSet(_creatorId, _displayName);
+    }
+
+    function setCreatorAssetProvenenaceAddress(address _creatorId, address _assetProvenanceAddress) public override {
+        require(hasRole(Constants.AUTH_ROLE, msg.sender) || msg.sender == _creatorId, "NOT AUTHORIZED");
+        require(_creatorAssetRecords[_creatorId] == address(0), "CREATOR ASSET RECORD ALREADY SET");
+        
+        _creatorAssetRecords[_creatorId] = _assetProvenanceAddress;
+    }
+
+    function getCreatorAssetProvenanceAddress(address _creatorId) public view returns (address) {
+        return _creatorAssetRecords[_creatorId];
     }
 
     function supportsInterface(bytes4 interfaceId)
